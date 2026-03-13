@@ -27,8 +27,8 @@ body:
       label: Supported standards
       description: Select all that apply
       options:
-        - label: R^5RS
-        - label: R<sup>6</sup>RS
-        - label: R7RS
+        - label: R<sup>5</sup>
+        - label: R<sup>6</sup>
+        - label: R<sup>7</sup>
     validations:
       required: true
