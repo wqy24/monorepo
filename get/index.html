@@ -149,5 +149,59 @@
 </tr>
 </tbody>
 </table>
+<div>
+  <h4>Add new implementation</h4>
+  <form id="prForm">
+    <div>
+      <label>Name: <input type="text" id="name" required></label>
+    </div>
+    <div>
+      <label>URL: <input type="url" id="url" required></label>
+    </div>
+    <div>
+      <label>Description: <input type="text" id="desc" required></label>
+    </div>
+    <div>
+      <span>RnRS support: </span>
+      <label><input type="checkbox" id="r5rs" value="R5RS"> R5RS</label>
+      <label><input type="checkbox" id="r6rs" value="R6RS"> R6RS</label>
+      <label><input type="checkbox" id="r7rs" value="R7RS"> R7RS</label>
+    </div>
+    <button type="button" onclick="generatePR()">Generate PR link</button>
+  </form>
+  <p id="output"></p>
+</div>
+
+<script>
+function generatePR() {
+  const name = document.getElementById('name').value.trim();
+  const url = document.getElementById('url').value.trim();
+  const desc = document.getElementById('desc').value.trim();
+  
+  let standards = [];
+  if (document.getElementById('r5rs').checked) standards.push('R<sup>5</sup>');
+  if (document.getElementById('r6rs').checked) standards.push('R<sup>6</sup>');
+  if (document.getElementById('r7rs').checked) standards.push('R<sup>7</sup>');
+  
+  if (!name || !url || !desc || standards.length === 0) {
+    alert('Please fill all fields and select at least one standard');
+    return;
+  }
+  
+  const standardsHtml = standards.join(' ');
+  const tableRow = `
+<tr>
+  <th><a href="${url}">${name}</a></th>
+  <td>${desc}</td>
+  <td class="sidenote">${standardsHtml}</td>
+</tr>`;
+  
+  const encodedRow = encodeURIComponent(tableRow);
+  const filePath = 'get/index.org';
+  const prLink = `https://github.com/schemeorg-community/schemeorg-community/edit/main/${filePath}?message=Add%20${encodeURIComponent(name)}%20implementation&content=${encodedRow}`;
+  
+  document.getElementById('output').innerHTML = `<a href="${prLink}" target="_blank">Click here to create PR for ${name}</a>`;
+}
+</script>
 </body>
 </html>
