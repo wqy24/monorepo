@@ -1,0 +1,34 @@
+name: Add implementation
+description: Submit a new Scheme implementation for the list
+title: "[New Implementation]: "
+labels: ["new-implementation"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Name
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: URL
+    validations:
+      required: true
+  - type: input
+    id: desc
+    attributes:
+      label: Description
+    validations:
+      required: true
+  - type: checkboxes
+    id: standards
+    attributes:
+      label: Supported standards
+      description: Select all that apply
+      options:
+        - label: R^5RS
+        - label: R<sup>6</sup>RS
+        - label: R7RS
+    validations:
+      required: true
