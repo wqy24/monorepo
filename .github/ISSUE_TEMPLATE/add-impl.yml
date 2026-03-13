@@ -27,7 +27,7 @@ body:
       label: Supported standards
       description: Select all that apply
       options:
-        - label: R<sup>5</sup>
+        - label: R<sup>5</sup><input type=url>
         - label: R<sup>6</sup>
         - label: R<sup>7</sup>
     validations:
